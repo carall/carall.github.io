@@ -16,4 +16,4 @@ url: "http://yourdomain.com" # the base hostname & protocol for your site
 github_username:  carall #jekyll
 
 # Build settings
-markdown: kramdown
+markdown: rdiscount
