@@ -1,3 +1,6 @@
+---
+layout: post
+---
 ##0.RE & wildcard
 
 ##1.sed(stream editor)
