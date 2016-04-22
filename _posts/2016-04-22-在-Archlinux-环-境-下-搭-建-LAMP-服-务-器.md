@@ -20,6 +20,7 @@ LAMP即**Linux+Apache+Mysql+Php**构成的网络服务器环境。当然，各�
 
 *****
 ## 2.配置和使用 
+
 ### 2.1 [php](https://wiki.archlinux.org/index.php/PHP)
  
 ###### 最主要的配置文件是 */etc/php/php.ini*
