@@ -49,6 +49,7 @@ LAMP即**Linux+Apache+Mysql+Php**构成的网络服务器环境。当然，各�
 
 * 启用php 设置:  
 
+```
 
 	1. 注释掉：#LoadModule mpm_event_module modules/mod_mpm_evert.so
 	    取消注释：LoadModule mpm_event_module modules/mod_mpm_prefork.so
@@ -57,9 +58,13 @@ LAMP即**Linux+Apache+Mysql+Php**构成的网络服务器环境。当然，各�
 
 	3. 添加 Include conf/extra/php7_module.conf 在 Include list 结尾的地方。
 
+```
+
 ###### 注意任何更改之后都要重启 httpd.service 才能生效。
+
 ***
-### 2.3. [Mysql/MariaDB](https://wiki.archlinux.org/index.php?title=MySQL&redirect=no)
+
+### 2.3  [Mysql/MariaDB](https://wiki.archlinux.org/index.php?title=MySQL&redirect=no)
 
 * 设置用户、目录等信息：`mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql`
 
