@@ -43,7 +43,9 @@ PHP和Mysql的合作很完美，在php中和mysql通信的接口有两套：PDO�
 
 * `$stmt->bindParam(':name',$name);` 把变量赋值 
 * `$result=$stmt->execute();` execute之后返回PDOStatement实例
+
 ***
+
 ## 3. 从 PDOStatement 实例中获取数据
 
 #### 3.1 [fetch()](http://php.net/manual/en/pdostatement.fetch.php)  
@@ -53,6 +55,9 @@ PHP和Mysql的合作很完美，在php中和mysql通信的接口有两套：PDO�
 #### 3.3 setFetchMode()  
 
 #### 3.4 bindColumn()  
+
 * `$result->bindColumn(1,$name)`  
+
 ****
+
 ## 4. Transaction
