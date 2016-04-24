@@ -41,8 +41,14 @@ Ajax可以建立JS和PHP之间的联系，做到异步通信，从而实现不�
 
 * GET:        
 
-	`xmlHttp.open("GET",*.php?param1=x&&param2=y,true);
-	xmlHttp.onreadyStatechange=headleRequestStateChange;`当readystate(0/1/2/3/4)改变时就执行handleRequestStateChange()	
+	`xmlHttp.open("GET",*.php?param1=x&&param2=y,true);`
+	
+	与PHP文件建立连接，PHP返回的内容将会存在responseText或者responseXML中
+
+	`xmlHttp.onreadyStatechange=handleRequestStateChange;`
+	
+	readystate用来表示与服务器连接建立成功与否，有5种状态，只有状态4才表示建立成功。当readystate(0/1/2/3/4)改变时就执行handleRequestStateChange()	
+	
 	`xmlHttp.send(null);`
 	
 
@@ -60,7 +66,7 @@ Ajax可以建立JS和PHP之间的联系，做到异步通信，从而实现不�
 **function *handleRequestStateChange()***
 
 	if (xmlHttp.readyState==4){    //readystate=4 请求建立完成
-		if(xmlHttp.status==200){     //status:http状态
+		if(xmlHttp.status==200){     //status:http状态,当PHP返回数据成功后会把status设置为200
 			try{
 				response=xmlHttp.responseText;  //把PHP返回的text数据存储在response里面 
 				//打印出response内容
@@ -91,6 +97,7 @@ Ajax可以建立JS和PHP之间的联系，做到异步通信，从而实现不�
 #### 5. PHP
 
 ##### 5.1 Create a XML document
+	
 	$dom=new DOMDocument();
 	\\root 
 	$root=$dom->createElement('root');
@@ -100,7 +107,10 @@ Ajax可以建立JS和PHP之间的联系，做到异步通信，从而实现不�
 	echo $xmlString;
 
 ##### 5.2 接受来着JS的参数
+
 	$name1=$_GET ['name1'];
 
 ## 6. Conslusion
-![flow](Ajax_flow.jpg)
+
+![flow](Ajax)
+
