@@ -3,9 +3,10 @@ layout: post
 ---
 #  [PDO](http://www.php.net/manual/en/book.pdo.php) in [PHP](http://php.net/manual/en/index.php)
 
-***
 
 PHP和Mysql的合作很完美，在php中和mysql通信的接口有两套：PDO和mysqli，前者可以在其他数据库软件环境下使用，故介绍。
+
+****
 
 ## 1. 建立连接
 
@@ -24,7 +25,9 @@ PHP和Mysql的合作很完美，在php中和mysql通信的接口有两套：PDO�
 
 ***
 
+
 ## 2. SQL 查询语句
+
 
 #### 2.1  exec()  
 
