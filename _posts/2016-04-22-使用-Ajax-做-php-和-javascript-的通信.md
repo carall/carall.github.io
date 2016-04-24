@@ -1,14 +1,22 @@
 ---
 layout: post
 ---
-##(Ajax & [XMLHttpRequest](http://www.w3schools.com/xml/dom_http.asp)) in JS & PHP
+
+## (Ajax & [XMLHttpRequest](http://www.w3schools.com/xml/dom_http.asp)) in JS & PHP
+
 ***
-####0. Name a XMLHttpRequest object
+
+简介：
+	
+Ajax可以建立JS和PHP之间的联系，做到异步通信，从而实现不需要重新加载页面就可以更新页面数据的功能。其中最重要的就是**XMLHttpRequest**对象的使用。
+
+#### 0. 命名一个XMLHttpRequest对象
 
 	var xmlHttp=createXmlHttpRequest();
 
-####1. Create a XMLHttpRequest object    
-**function *createXmlHttpRequestObject()* **
+#### 1. 创建一个XMLHttpRequest对象并返回 
+
+**function *createXmlHttpRequestObject()***
 
 	var xmlHttp;
 	try{
@@ -25,16 +33,20 @@ layout: post
 	else
 		return xmlHttp;
 
-####2. Server Process  
+#### 2. 创建调用服务器请求 
 
-**function *process()* (go with the HTML)**
+**function *process()* (由html文件调用)**
+
+首先建立和PHP文件的连接并传递参数，然后监听服务器响应（异步），传递参数有两种方式实现：
 
 * GET:        
 
 	`xmlHttp.open("GET",*.php?param1=x&&param2=y,true);
-	xmlHttp.onreadyStatechange=headleRequestStateChange;
-	xmlHttp.send(null);`
-**pay attention to *true* and *onreadyStateChange* **
+	xmlHttp.onreadyStatechange=headleRequestStateChange;`当readystate(0/1/2/3/4)改变时就执行handleRequestStateChange()	
+	`xmlHttp.send(null);`
+	
+
+**true** : 异步的关键！当建立连接之后，脚本（send和onreadystatechange）继续执行，监听服务器响应。
 
 * POST:            
 
@@ -43,16 +55,16 @@ layout: post
 	**run handleRequestStateChange when readystate change**
 	`xmlHttp.send("param1=x&&param2=y");`
 
-####3. Server Return 
+#### 3. 服务器返回数据(回调方法)
 
-** function *handleRequestStateChange()* **
+**function *handleRequestStateChange()***
 
-	if (xmlHttp.readyState==4){    //readystate=4 when request finished
-		if(xmlHttp.status==200){     //status:return number of the request				
+	if (xmlHttp.readyState==4){    //readystate=4 请求建立完成
+		if(xmlHttp.status==200){     //status:http状态
 			try{
-				response=xmlHttp.responseText;   
-				//display response
-				//Or use XML like: handleServerResponse();
+				response=xmlHttp.responseText;  //把PHP返回的text数据存储在response里面 
+				//打印出response内容
+				//如果PHP返回的时XML数据，就要调用 handleServerResponse();
 			}
 			catch(e){					
 				alert("Error reading the response:"+e.toString());
@@ -64,9 +76,9 @@ layout: post
 	}  
 
 
-####4. Turn XML to HTML
+#### 4. Turn XML to HTML
 
-**functon *handleServerResponse()* **
+**functon *handleServerResponse()***
 
 
 	vara xmlResponse=xmlHttp.responseXML;  \\get a XML DOM object from a xmlstring!
@@ -76,9 +88,9 @@ layout: post
 	Array1.item(1).firstchild.fata
 
 
-####5. PHP
+#### 5. PHP
 
-#####5.1 Create a XML document
+##### 5.1 Create a XML document
 	$dom=new DOMDocument();
 	\\root 
 	$root=$dom->createElement('root');
@@ -87,8 +99,8 @@ layout: post
 	$xmlString=$dom->saveXML();  \\get a xmlstring
 	echo $xmlString;
 
-#####5.2 pass parameters
+##### 5.2 接受来着JS的参数
 	$name1=$_GET ['name1'];
 
-##6. Conslusion
+## 6. Conslusion
 ![flow](Ajax_flow.jpg)
