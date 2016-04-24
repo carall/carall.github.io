@@ -24,7 +24,7 @@ PHP和Mysql的合作很完美，在php中和mysql通信的接口有两套：PDO�
 
 ***
 
-## 2.  SQL 查询语句
+## 2. SQL 查询语句
 
 #### 2.1  exec()  
 
