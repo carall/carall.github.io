@@ -6,7 +6,7 @@ layout: post
 
 PHP和Mysql的合作很完美，在php中和mysql通信的接口有两套：PDO和mysqli，前者可以在其他数据库软件环境下使用，故介绍。
 
-****
+***
 
 ## 1. 建立连接
 
