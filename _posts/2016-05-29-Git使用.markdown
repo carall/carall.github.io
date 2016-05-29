@@ -1,0 +1,127 @@
+---
+layout: post
+title:  "Git使用"
+categories: Git
+---
+
+## 0. 安装
+***
+## 1. 使用之前的设置
+
+#### 1.1 全局设置，以后使用 git 时默认以 name 的身份进行：
+
+* `git config --global user.name "Github user name"`
+
+* `git config --global user.email "Github user email"`
+
+#### 1.2 添加 ssh-key 到 Github 来授予本电脑操作权限：
+
+* `ssh-keygen -t rsa -C "email"`
+
+上述命令会成对生成私钥和公钥（文件夹自己设置），将.ssh/id_rsa.pub 中的内容粘贴到 Github 即可。
+
+***
+
+## 2. 基本的命令和操作
+
+#### 2.1 初始化：
+
+`git clone git@github.com:userneme/reponame.git` `git clone https://github.com/usename/reponame.git`
+
+`git init`
+
+前面一种方法针对在 github 已经有项目的情况，后者针对在本地新建项目的情况。命令执行完毕后会在命令执行目录下生成一个 ** .Git ** 目录，用来存放关于本项目的各种信息。
+
+#### 2.2 Git 原理：
+
+![git1](/assets/git1.jpg)
+
+如上图，在进行刚刚的初始化之后，我们会得到一个 ** 版本库 ** 一个** HEAD指针** 和一个 **master分支** ，其基本信息存放在 .Git 目录下
+
+* 工作区：在目录下可以看到的文件结构
+
+* 暂存区（stage）：
+
+* master 分支：HEAD 指针
+
+#### 2.3 基本操作：
+
+* `git status` 用来查看当前项目状态，以及一些基本的操作提醒
+
+* `git diff filename` 查看工作区和暂存区文件差异
+
+* `git checkout --filename` 舍弃工作区的修改内容
+
+* `git add filename`  `git add .` 用来把修改内容添加到暂存区stage
+
+* `git reset HEAD filename` git add 的逆向操作，把stage的内容回退
+
+* `git commit -m "提交的内容/更改说明"` 用来把暂存区的内容提交到master分支，也就是HEAD指针的指向
+
+* `git reset --hard HEAD^` git commit 的逆向操作，把master内容回退
+
+* `git push origin master` 如果更改确认没有问题，就可以把更改推送到Github了
+
+* `git rm filename`
+
+***
+
+## 3. 分支
+
+**在初始化之后会自动生成一个master分支**
+
+#### 3.1 新建 切换 查看分支：
+
+![branch](/assets/git2.png)
+
+* `git branch` 查看本地分支状态以及当前使用分支
+
+* `git branch dev` 新建分支dev
+
+*  `git checkout dev` 切换到分支dev
+
+* `git checkout -b dev` 新建并切换分支
+
+* `git branch -d dev` 删除分支
+
+#### 3.2 合并分支：
+
+* `git merge dev` 把dev合并到当前分支
+
+当dev分支领先于当前分支时，上述命令可以使用快速合并，但是如果两个分支有冲突就会比较麻烦，我们只能手动解决冲突再进行合并
+
+![](/assets/git3.png)
+
+***
+
+## 3.多人协作
+
+git提供了多种多人协作的方式，这里介绍两种：fork和共享
+
+#### 3.1 共享/合作模式：
+
+适用于多人共同进行一个项目，所有人对同一个项目有相同的权限（push）。
+
+1. 在Github 网站项目下添加合作者，[参考这里](https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/)
+
+2. 被添加用户会收到提醒以确认参与
+
+3. 被添加用户去clone 源项目，然后进行正常的push操作
+
+#### 3.2 fork模式：
+
+适用于个人参与大型开源项目，贡献源代码，没有push权限，只能pull request，然后等待被接受
+
+1. 进入开源项目地址，点击fork，就可以在自己的账号项目复制一份源项目，从自己的项目clone
+
+2. 进行修改/添加，然后push到自己的项目
+
+3. 在 Github 页面进行 **pull request**
+
+**参考：**
+
+[廖雪峰的git教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+
+[葱丝瓣酱的博客](http://xiaocong.github.io/blog/2013/03/20/team-collaboration-with-github/)
+
+[Github 帮助](https://help.github.com/)

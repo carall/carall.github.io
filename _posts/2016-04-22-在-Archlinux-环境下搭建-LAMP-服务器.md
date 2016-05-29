@@ -12,23 +12,23 @@ LAMP即**Linux+Apache+Mysql+Php**构成的网络服务器环境。当然，各�
 
 几乎所有的软件都存在于Archlinux的official repo中，直接安装就可以：
 
-	pacman -S php php-cgi mariadb apache php-apache 
+	pacman -S php php-cgi mariadb apache php-apache
 
-* Sun被Oracle收购之后，大部分linux发行版不在支持mysql，而改为mariadb，所以 mysql现在已经不在official repo中了，不过可以在AUR中下载：`yaourt -S mysql`,两者操作基本一致。	
-* php-cgi和php-apache都是php配合apache使用的软件包。php-cgi为[cgi接口](https://www.w3.org/CGI/)。	
+* Sun被Oracle收购之后，大部分linux发行版不在支持mysql，而改为mariadb，所以 mysql现在已经不在official repo中了，不过可以在AUR中下载：`yaourt -S mysql`,两者操作基本一致。
+* php-cgi和php-apache都是php配合apache使用的软件包。php-cgi为[cgi接口](https://www.w3.org/CGI/)。
 
 
 *****
 
-## 2.配置和使用 
+## 2.配置和使用
 
 ### 2.1 [php](https://wiki.archlinux.org/index.php/PHP)
- 
+
 ###### 最主要的配置文件是 */etc/php/php.ini*
 
 *	`date.timezone=Asia/Shanghai`
-	`display_error=on` 
-	
+	`display_error=on`
+
 	在php.ini中修改以上两行来设置时区和启用错误提示功能。
 
 *	`extension=mysql.so`  `extension=pdo_mysql.so`
@@ -43,7 +43,7 @@ LAMP即**Linux+Apache+Mysql+Php**构成的网络服务器环境。当然，各�
 * 设置Apache开机启动: `sudo systemctl enable httpd.service`
 * 启动 Apache: `sudo systemctl start httpd.service`
 
-* 更改网站的存放位置（默认存放位置为/srv/http） 
+* 更改网站的存放位置（默认存放位置为/srv/http）
 
 	更改 http.conf 中的设置: `DocumetRoot "/path/to/dir"`  `<Directory "/path/to/dir">`  `Require all granted`
 
@@ -53,12 +53,12 @@ LAMP即**Linux+Apache+Mysql+Php**构成的网络服务器环境。当然，各�
 
 ```
 
-	1. 注释掉：#LoadModule mpm_event_module modules/mod_mpm_evert.so
+	1. 注释掉：#LoadModule mpm_event_module modules/mod_mpm_event.so
 	    取消注释：LoadModule mpm_event_module modules/mod_mpm_prefork.so
 
-	2. 添加 LoadModule php7_module modules/libphp7.so 在 mod_dir.so 之后。
+	2. 在 mod_dir.so 之后添加 LoadModule php7_module modules/libphp7.so
 
-	3. 添加 Include conf/extra/php7_module.conf 在 Include list 结尾的地方。
+	3. 在 Include list 结尾的地方添加 Include conf/extra/php7_module.conf
 
 ```
 

@@ -45,14 +45,14 @@ PHP和Mysql的合作很完美，在php中和mysql通信的接口有两套：PDO�
 
 * `$stmt=$sbh->prepare("select :name,:Id from table_name");` 准备好sql语句，当然是含有变量的。
 
-* `$stmt->bindParam(':name',$name);` 把变量赋值 
+* `$stmt->bindParam(':name',$name);` 把变量赋值
 * `$result=$stmt->execute();` execute之后返回PDOStatement实例
 
 ***
 
 ## 3. 从 PDOStatement 实例中获取数据
 
-#### 3.1 [fetch()](http://php.net/manual/en/pdostatement.fetch.php)  
+#### 3.1 [fetch()](http://php.net/manual/en/pdostatement.fetch.php)操作之后会得到一个数组形式，格式可以设置。
 
 #### 3.2 fetchAll()
 
